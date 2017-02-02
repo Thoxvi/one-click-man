@@ -71,9 +71,12 @@ class GitRepoController(object):
 
         if not os.path.exists(repo):
             os.makedirs(repo, exist_ok=True)
+
+        os.chdir(repo)
         if not os.path.exists("%s/.git" % repo):
             run_command("git init")
 
+        print("Repo path: %s" % repo)
         self.__git_repo_path = repo
         self.__tmp_file = "%s/%s" % (self.__git_repo_path, TMP_CHANGE_FILE)
         self.__msg_gen = RandomReader("%s/msg.data" % os.path.split(__file__)[0])
