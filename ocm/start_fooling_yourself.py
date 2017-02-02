@@ -75,8 +75,7 @@ class GitRepoController(object):
 
         self.__git_repo_path = repo
         self.__tmp_file = "%s/%s" % (self.__git_repo_path, TMP_CHANGE_FILE)
-        # TODO change path
-        self.__msg_gen = RandomReader("msg.data")
+        self.__msg_gen = RandomReader("%s/msg.data" % os.path.split(__file__)[0])
 
     def commit(self, commit_timestamp):
         commit_timestamp = "%s +0800" % str(commit_timestamp)
