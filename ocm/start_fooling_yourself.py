@@ -4,6 +4,7 @@
 import os
 import sys
 import time
+import datetime
 import random
 
 MIN = 60
@@ -16,27 +17,10 @@ TMP_CHANGE_FILE = ".ocm"
 
 
 def run_command(cmd: str):
-    print(cmd)
-    if os.system(cmd) != 0:
+    if os.system(cmd + " >/dev/null") != 0:
         return False
     else:
         return True
-
-
-def set_envs(**kwargs):
-    """
-    GIT_AUTHOR_NAME
-    GIT_AUTHOR_EMAIL
-    GIT_AUTHOR_DATE
-    GIT_COMMITTER_NAME
-    GIT_COMMITTER_EMAIL
-    GIT_COMMITTER_DATE
-
-    :return: None
-    """
-
-    for k, v in kwargs.items():
-        os.environ[k] = v
 
 
 class DateGenerator(object):
@@ -76,7 +60,6 @@ class GitRepoController(object):
         if not os.path.exists("%s/.git" % repo):
             run_command("git init")
 
-        print("Repo path: %s" % repo)
         self.__git_repo_path = repo
         self.__tmp_file = "%s/%s" % (self.__git_repo_path, TMP_CHANGE_FILE)
         self.__msg_gen = RandomReader("%s/msg.data" % os.path.split(__file__)[0])
@@ -114,3 +97,5 @@ if __name__ == '__main__':
         if not grc.commit(timestamp):
             print("Failure to commit")
             exit(1)
+        else:
+            print("Commit completed: " + datetime.datetime.fromtimestamp(timestamp).isoformat())
