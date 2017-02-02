@@ -45,9 +45,6 @@ class DateGenerator(object):
         self.__end_timestamp = int(end_timestamp)
 
     def __iter__(self):
-        return self
-
-    def __next__(self):
         now_timestamp = self.__start_timestamp
         end_timestamp = self.__end_timestamp
         while now_timestamp < end_timestamp:
