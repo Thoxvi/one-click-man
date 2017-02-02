@@ -16,6 +16,7 @@ TMP_CHANGE_FILE = ".ocm"
 
 
 def run_command(cmd: str):
+    print(cmd)
     if os.system(cmd) != 0:
         return False
     else:
@@ -60,7 +61,7 @@ class RandomReader(object):
         self.__line_list = open(file).read().split("\n")
 
     def get_random_line(self):
-        return random.choice(self.__line_list).respace("'", "\\'")
+        return random.choice(self.__line_list).replace("'", "")
 
 
 class GitRepoController(object):
@@ -69,9 +70,12 @@ class GitRepoController(object):
                 run_command("git commit -m '%s'" % self.__msg_gen.get_random_line()))
 
     def __init__(self, repo):
-        repo = os.path.expanduser(repo)
+        repo = os.path.realpath(os.path.expanduser(repo))
+
+        if not os.path.exists(repo):
+            os.makedirs(repo, exist_ok=True)
         if not os.path.exists("%s/.git" % repo):
-            raise RuntimeError("%s is not git repo!" % repo)
+            run_command("git init")
 
         self.__git_repo_path = repo
         self.__tmp_file = "%s/%s" % (self.__git_repo_path, TMP_CHANGE_FILE)
@@ -88,7 +92,7 @@ class GitRepoController(object):
 
     def __del__(self):
         if os.path.exists(self.__tmp_file):
-            os.rmdir(self.__tmp_file)
+            os.remove(self.__tmp_file)
             os.unsetenv("GIT_AUTHOR_DATE")
             os.unsetenv("GIT_COMMITTER_DATE")
             self.__commit_this_repo()
