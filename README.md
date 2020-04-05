@@ -2,7 +2,7 @@
 
 让你感受一键自欺欺人都感觉！
 
-[demo](./demo.png)
+![demo](./demo.png)
 
 ## 如何使用？
 
