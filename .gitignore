@@ -1,3 +1,5 @@
 .idea
 venv
 git_test
+__pycache__
+*.egg-info
