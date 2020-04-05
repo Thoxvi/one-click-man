@@ -19,7 +19,8 @@
 repo_path="~/one-click-man-hello-world"
 
 pip3 install --user git+https://github.com/thoxvi/one-click-man@master#egg=ocm --upgrade
-# 等待漫长的写入
+# 执行
 ocm $repo_path
+# 等待漫长的写入
 cd $repo_path && git push
 ```
