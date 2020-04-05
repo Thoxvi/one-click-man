@@ -23,4 +23,5 @@ pip3 install --user git+https://github.com/thoxvi/one-click-man@master#egg=ocm -
 ocm $repo_path
 # 等待漫长的写入
 cd $repo_path && git push
+# 一般需要半小时左右生效，请耐心等待
 ```
