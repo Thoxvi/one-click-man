@@ -32,9 +32,9 @@ class DateGenerator(object):
         now_timestamp = self.__start_timestamp
         end_timestamp = self.__end_timestamp
         while now_timestamp < end_timestamp:
-            now_timestamp += random.randint(10 * MIN, 50 * MIN)
+            now_timestamp += random.randint(30 * MIN, 120 * MIN)
             yield now_timestamp
-        raise StopIteration
+        return time.time()
 
 
 class RandomReader(object):
@@ -82,10 +82,6 @@ class GitRepoController(object):
 
 
 def main():
-    pass
-
-
-if __name__ == '__main__':
     if len(sys.argv) != 2:
         print("Example: ocm ~/git/one-click-man")
         exit(1)
@@ -99,3 +95,7 @@ if __name__ == '__main__':
             exit(1)
         else:
             print("Commit completed: " + datetime.datetime.fromtimestamp(timestamp).isoformat())
+
+
+if __name__ == '__main__':
+    main()
