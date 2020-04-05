@@ -25,3 +25,9 @@ ocm $repo_path
 cd $repo_path && git push
 # 一般需要半小时左右生效，请耐心等待
 ```
+
+## 最后
+
+觉得有趣的话请给一颗 Star 哦～
+
+`♪( ´▽｀)`
