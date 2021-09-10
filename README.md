@@ -18,7 +18,7 @@
 # 修改路径即可
 repo_path="~/one-click-man-hello-world"
 
-pip3 install --user git+https://github.com/thoxvi/one-click-man@master#egg=ocm --upgrade
+pip3 install --user git+https://github.com/thoxvi/one-click-man@master#egg=one-click-man --upgrade--upgrade
 # 执行
 ocm $repo_path
 # 等待漫长的写入

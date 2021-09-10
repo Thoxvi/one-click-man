@@ -3,3 +3,6 @@ venv
 git_test
 __pycache__
 *.egg-info
+dist
+build
+.venv
